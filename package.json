@@ -1,0 +1,49 @@
+{
+  "name": "designium",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AmadeusDeadDmytro/designium.git"
+  },
+  "author": "Dmytro Mazurenko",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AmadeusDeadDmytro/designium/issues"
+  },
+  "homepage": "https://github.com/AmadeusDeadDmytro/designium#readme",
+  "dependencies": {
+    "@types/antd": "^1.0.0",
+    "@types/styled-components": "^5.1.7",
+    "antd": "^4.11.2",
+    "babel-plugin-import": "^1.13.3",
+    "framer-motion": "^3.2.2-rc.1",
+    "isomorphic-fetch": "^3.0.0",
+    "less": "^4.1.0",
+    "next": "^10.0.5",
+    "next-redux-saga": "^4.1.2",
+    "next-redux-wrapper": "^6.0.2",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-icons": "^4.1.0",
+    "react-redux": "^7.2.2",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-saga": "^1.1.3",
+    "styled-components": "^5.2.1",
+    "typescript": "^4.1.3"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.22",
+    "@types/react": "^17.0.0",
+    "babel-plugin-styled-components": "^1.12.0",
+    "prettier": "^2.2.1"
+  }
+}
