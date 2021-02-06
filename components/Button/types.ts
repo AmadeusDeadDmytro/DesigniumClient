@@ -6,7 +6,7 @@ export interface ButtonProps {
     href?: string
     center?: boolean
     onClick?: () => void
-    loading?: boolean
+    loading: boolean
 }
 
 export interface ButtonWrapperProps {

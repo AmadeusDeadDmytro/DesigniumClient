@@ -4,6 +4,7 @@ import { Space } from 'antd'
 import styled from 'styled-components'
 import Link from 'next/link'
 import { textColor } from '../../styles/constants'
+import { useDispatch } from 'react-redux'
 
 const INITIAL_FORM_DATA = {
     email: '',
@@ -15,11 +16,21 @@ const INITIAL_FORM_DATA = {
     message: '',
 }
 
-const SignUp = () => {
+const SignUp = props => {
     const [formData, setFormData] = useState(INITIAL_FORM_DATA)
     const [loading, setLoading] = useState(false)
+    const dispatch = useDispatch()
 
-    const handleSubmit = () => {}
+    const _signUp = () => {
+        const obj = {
+            name: formData.name,
+            email: formData.email,
+            password: formData.password,
+            confirmPassword: formData.confirmPassword,
+        }
+
+        dispatch({ type: 'SIGN_UP', payload: obj })
+    }
 
     const handleChange = (value: string, key: string) => {
         setFormData({
@@ -60,7 +71,7 @@ const SignUp = () => {
                 id={'confirmPassword'}
                 value={formData.confirmPassword}
             />
-            <Button full onClick={handleSubmit} loading={loading}>
+            <Button full onClick={() => _signUp()} loading={loading}>
                 Confirm
             </Button>
             <StyledText>

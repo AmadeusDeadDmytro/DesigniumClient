@@ -8,3 +8,4 @@ export enum Actions {
     SIGN_UP_ERROR = 'SIGN_UP_ERROR',
 }
 
+// ActionTypes

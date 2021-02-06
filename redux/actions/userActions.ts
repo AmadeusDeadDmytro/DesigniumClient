@@ -1,25 +1,26 @@
-import { Actions } from '../types'
+import * as t from '../types'
 
 export const signIn = () => ({
-    type: Actions.SIGN_IN
+    type: t.Actions.SIGN_IN,
 })
 
 export const signInSuccess = () => ({
-    type: Actions.SIGN_IN_SUCCESS
+    type: t.Actions.SIGN_IN_SUCCESS,
 })
 
 export const signInError = () => ({
-    type: Actions.SIGN_IN_ERROR
+    type: t.Actions.SIGN_IN_ERROR,
 })
 
-export const signUp = () => ({
-    type: Actions.SIGN_UP
+export const signUp = user => ({
+    type: t.Actions.SIGN_UP,
 })
 
 export const signUpSuccess = () => ({
-    type: Actions.SIGN_UP_SUCCESS
+    type: t.Actions.SIGN_UP_SUCCESS,
 })
 
-export const signUpError = () => ({
-    type: Actions.SIGN_UP_ERROR
+export const signUpError = (error: string) => ({
+    type: t.Actions.SIGN_UP_ERROR,
+    payload: error,
 })

@@ -1,23 +1,23 @@
-import { put } from '@redux-saga/core/effects'
+import { put, call } from '@redux-saga/core/effects'
 
-import { signInSuccess, signInError, signUpError, signUpSuccess } from '../actions/userActions'
-import { API } from '../../config'
+import {
+    signInSuccess,
+    signInError,
+    signUpError,
+    signUpSuccess,
+} from '../actions/userActions'
+import { postRequest } from '../../helpers/requests'
 
-export function* signUp(action) {
+export function* watchSignUp({ payload }) {
     try {
-        const response = yield fetch(API + '/signup', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json, application/xml, text/plain, text/html, *.*',
-                'Content-Type': 'application/json; charset=utf-8'
-            },
-            body: JSON.stringify({})
-        })
+        const response = yield call(postRequest, 'signup', payload)
 
-        const msg = yield response.json().message
-        console.log(msg)
-        yield put(signUpSuccess())
-    } catch (e) {
-        yield put(signUpError())
+        if (response.status >= 200 && response.status <= 300) {
+            yield put(signUpSuccess())
+        } else {
+            throw response
+        }
+    } catch (error) {
+        yield put(signUpError(error))
     }
 }
