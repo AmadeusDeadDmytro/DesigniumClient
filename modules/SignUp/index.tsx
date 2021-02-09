@@ -21,8 +21,8 @@ const SignUp = () => {
     const [loading, setLoading] = useState(false)
     const dispatch = useDispatch()
 
-    const _signUp = () => {
-        dispatch({
+    const _signUp = async () => {
+        await dispatch({
             type: 'SIGN_UP',
             payload: {
                 name: formData.name,
@@ -43,7 +43,7 @@ const SignUp = () => {
 
     const handleConfirm = () => {
         setLoading(true)
-        _signUp()
+        _signUp().then(() => setLoading(false))
     }
 
     return (
