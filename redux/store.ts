@@ -5,10 +5,11 @@ import { createWrapper } from 'next-redux-wrapper'
 import rootReducer from './reducers/rootReducer'
 import getConfig from 'next/config'
 import rootSaga from './sagas'
+import { SagaMiddleware } from '@redux-saga/core'
 
 const { publicRuntimeConfig } = getConfig()
 
-const bindMiddleware = middleware => {
+const bindMiddleware = (middleware: SagaMiddleware[]) => {
     if (!publicRuntimeConfig.PRODUCTION) {
         const { composeWithDevTools } = require('redux-devtools-extension')
 
@@ -20,10 +21,13 @@ const bindMiddleware = middleware => {
 
 export const makeStore = () => {
     const sagaMiddleware = createSagaMiddleware()
-    const store: any = createStore(rootReducer, bindMiddleware([sagaMiddleware]))
+    const store: any = createStore(
+        rootReducer,
+        bindMiddleware([sagaMiddleware])
+    )
 
     store.sagaTask = sagaMiddleware.run(rootSaga)
     return store
 }
 
-export const wrapper = createWrapper(makeStore, {debug: true})
+export const wrapper = createWrapper(makeStore, { debug: false })

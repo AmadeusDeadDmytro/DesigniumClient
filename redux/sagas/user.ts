@@ -1,23 +1,32 @@
-import { put, call } from '@redux-saga/core/effects'
+import { call, put } from '@redux-saga/core/effects'
+import * as t from '../types'
 
-import {
-    signInSuccess,
-    signInError,
-    signUpError,
-    signUpSuccess,
-} from '../actions/userActions'
+import { showNotification } from '../actions/notificationActions'
 import { postRequest } from '../../helpers/requests'
+import { NotificationTypeEnum } from '../../helpers/enums'
 
-export function* watchSignUp({ payload }) {
+export function* watchSignUp({ payload }: t.SignUpAction) {
     try {
         const response = yield call(postRequest, 'signup', payload)
 
-        if (response.status >= 200 && response.status <= 300) {
-            yield put(signUpSuccess())
-        } else {
-            throw response
-        }
+        const notif = yield response
+            .json()
+            .then(({ error, message }: { error: string; message: string }) => {
+                return {
+                    type: error
+                        ? NotificationTypeEnum.ERROR
+                        : NotificationTypeEnum.SUCCESS,
+                    msg: error ? error : message,
+                }
+            })
+
+        yield put(showNotification(notif))
     } catch (error) {
-        yield put(signUpError(error))
+        yield put(
+            showNotification({
+                type: NotificationTypeEnum.ERROR,
+                msg: 'Request Error!',
+            })
+        )
     }
 }

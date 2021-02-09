@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import { textColor } from '../styles/constants'
 import { motion } from 'framer-motion'
 
-const SignUp = props => {
+const SignUp = () => {
     return (
         <StyledRow align={'middle'}>
             <Col span={8} offset={4}>

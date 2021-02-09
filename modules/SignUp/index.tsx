@@ -16,20 +16,21 @@ const INITIAL_FORM_DATA = {
     message: '',
 }
 
-const SignUp = props => {
+const SignUp = () => {
     const [formData, setFormData] = useState(INITIAL_FORM_DATA)
     const [loading, setLoading] = useState(false)
     const dispatch = useDispatch()
 
     const _signUp = () => {
-        const obj = {
-            name: formData.name,
-            email: formData.email,
-            password: formData.password,
-            confirmPassword: formData.confirmPassword,
-        }
-
-        dispatch({ type: 'SIGN_UP', payload: obj })
+        dispatch({
+            type: 'SIGN_UP',
+            payload: {
+                name: formData.name,
+                email: formData.email,
+                password: formData.password,
+                confirmPassword: formData.confirmPassword,
+            },
+        })
     }
 
     const handleChange = (value: string, key: string) => {
@@ -38,6 +39,11 @@ const SignUp = props => {
             error: '',
             [key]: value,
         })
+    }
+
+    const handleConfirm = () => {
+        setLoading(true)
+        _signUp()
     }
 
     return (
@@ -71,7 +77,7 @@ const SignUp = props => {
                 id={'confirmPassword'}
                 value={formData.confirmPassword}
             />
-            <Button full onClick={() => _signUp()} loading={loading}>
+            <Button full onClick={() => handleConfirm()} loading={loading}>
                 Confirm
             </Button>
             <StyledText>
