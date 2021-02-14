@@ -1,7 +1,8 @@
-import { Actions, UserStateType, UserActionTypes } from '../types'
+import { Actions, UserActionTypes, UserStateType } from '../types'
 
 const INITIAL_STATE: UserStateType = {
     userInfo: {},
+    loading: false,
 }
 
 const userReducer = (
@@ -13,6 +14,12 @@ const userReducer = (
         case Actions.SIGN_UP:
             return {
                 ...state,
+                loading: true,
+            }
+        case Actions.STOP_LOADING:
+            return {
+                ...state,
+                loading: false,
             }
         default:
             return { ...state }

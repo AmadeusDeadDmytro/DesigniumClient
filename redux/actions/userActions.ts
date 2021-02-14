@@ -7,3 +7,7 @@ export const signIn = () => ({
 export const signUp = () => ({
     type: t.Actions.SIGN_UP,
 })
+
+export const stopLoading = () => ({
+    type: t.Actions.STOP_LOADING,
+})

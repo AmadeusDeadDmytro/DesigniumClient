@@ -4,7 +4,7 @@ import { Space } from 'antd'
 import styled from 'styled-components'
 import Link from 'next/link'
 import { textColor } from '../../styles/constants'
-import { useDispatch } from 'react-redux'
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux'
 
 const INITIAL_FORM_DATA = {
     email: '',
@@ -18,8 +18,12 @@ const INITIAL_FORM_DATA = {
 
 const SignUp = () => {
     const [formData, setFormData] = useState(INITIAL_FORM_DATA)
-    const [loading, setLoading] = useState(false)
+
     const dispatch = useDispatch()
+    const state = useSelector((state: RootStateOrAny) => state)
+    const {
+        _user: { loading },
+    } = state
 
     const _signUp = async () => {
         await dispatch({
@@ -43,15 +47,12 @@ const SignUp = () => {
     }
 
     const handleConfirm = () => {
-        setLoading(true)
-        _signUp()
-
-        setLoading(false)
+        _signUp().then(r => r)
     }
 
     return (
         <Space direction={'vertical'} size={20} wrap style={{ width: '100%' }}>
-            <StyledTitle>Sign Up</StyledTitle>
+            <StyledTitle>Sign Up {loading.toString()}</StyledTitle>
             <Textfield
                 type={'text'}
                 placeholder={'Name'}

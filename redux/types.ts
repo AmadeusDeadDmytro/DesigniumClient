@@ -5,9 +5,11 @@ export enum Actions {
     // notifications
     SHOW_NOTIFICATION = 'SHOW_NOTIFICATION',
     HIDE_NOTIFICATION = 'HIDE_NOTIFICATION',
+
     // user
     SIGN_IN = 'SIGN_IN',
     SIGN_UP = 'SIGN_UP',
+    STOP_LOADING = 'STOP_LOADING',
 }
 
 //////////////////////////////////////////////////////////////// States
@@ -22,6 +24,7 @@ export type NotificationType = {
 
 export interface UserStateType {
     userInfo: UserInfoType
+    loading: boolean
 }
 
 export type UserInfoType = {}
@@ -36,12 +39,15 @@ export interface HideNotificationAction {
     type: typeof Actions.HIDE_NOTIFICATION
 }
 
-export type NotificationsActionTypes = AddNotificationAction | HideNotificationAction
+export type NotificationsActionTypes =
+    | AddNotificationAction
+    | HideNotificationAction
 
 export interface SignInAction {
     type: typeof Actions.SIGN_IN
     payload: UserStateType
 }
+
 export interface SignUpAction {
     type: typeof Actions.SIGN_UP
     payload: {
@@ -52,4 +58,8 @@ export interface SignUpAction {
     }
 }
 
-export type UserActionTypes = SignInAction | SignUpAction
+export interface StopLoadingAction {
+    type: typeof Actions.STOP_LOADING
+}
+
+export type UserActionTypes = SignInAction | SignUpAction | StopLoadingAction
