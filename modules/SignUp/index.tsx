@@ -35,7 +35,6 @@ const SignUp = () => {
                 confirmPassword: formData.confirmPassword,
             },
         })
-        setFormData(INITIAL_FORM_DATA)
     }
 
     const handleChange = (value: string, key: string) => {
