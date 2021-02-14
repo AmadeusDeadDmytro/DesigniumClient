@@ -25,8 +25,8 @@ const SignUp = () => {
         _user: { loading },
     } = state
 
-    const _signUp = async () => {
-        await dispatch({
+    const _signUp = () => {
+        dispatch({
             type: 'SIGN_UP',
             payload: {
                 name: formData.name,
@@ -46,7 +46,7 @@ const SignUp = () => {
     }
 
     const handleConfirm = () => {
-        _signUp().then(r => r)
+        _signUp()
     }
 
     return (
