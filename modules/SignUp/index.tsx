@@ -31,6 +31,7 @@ const SignUp = () => {
                 confirmPassword: formData.confirmPassword,
             },
         })
+        setFormData(INITIAL_FORM_DATA)
     }
 
     const handleChange = (value: string, key: string) => {
@@ -43,7 +44,9 @@ const SignUp = () => {
 
     const handleConfirm = () => {
         setLoading(true)
-        _signUp().then(() => setLoading(false))
+        _signUp()
+
+        setLoading(false)
     }
 
     return (

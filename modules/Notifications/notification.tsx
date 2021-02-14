@@ -54,4 +54,6 @@ const NotificationWrapper = styled(Space)<{ background: string }>`
     width: 300px;
 `
 
-const Message = styled.p``
+const Message = styled.p`
+    user-select: none;
+`

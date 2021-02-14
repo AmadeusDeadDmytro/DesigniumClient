@@ -1,7 +1,7 @@
-import { call, put } from '@redux-saga/core/effects'
+import { call, put, delay } from '@redux-saga/core/effects'
 import * as t from '../types'
 
-import { showNotification } from '../actions/notificationActions'
+import {hideNotification, showNotification} from '../actions/notificationActions'
 import { postRequest } from '../../helpers/requests'
 import { NotificationTypeEnum } from '../../helpers/enums'
 
@@ -19,8 +19,9 @@ export function* watchSignUp({ payload }: t.SignUpAction) {
                     msg: error ? error : message,
                 }
             })
-
         yield put(showNotification(notif))
+        yield delay(3000)
+        yield put(hideNotification())
     } catch (error) {
         yield put(
             showNotification({
@@ -28,5 +29,7 @@ export function* watchSignUp({ payload }: t.SignUpAction) {
                 msg: 'Request Error!',
             })
         )
+        yield delay(3000)
+        yield put(hideNotification())
     }
 }

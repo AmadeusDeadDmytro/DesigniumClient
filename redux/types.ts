@@ -32,7 +32,11 @@ export interface AddNotificationAction {
     payload: NotificationType
 }
 
-export type NotificationsActionTypes = AddNotificationAction
+export interface HideNotificationAction {
+    type: typeof Actions.HIDE_NOTIFICATION
+}
+
+export type NotificationsActionTypes = AddNotificationAction | HideNotificationAction
 
 export interface SignInAction {
     type: typeof Actions.SIGN_IN

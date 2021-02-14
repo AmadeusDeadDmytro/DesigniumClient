@@ -13,6 +13,10 @@ const userReducer = (
             return {
                 notification: action.payload,
             }
+        case t.Actions.HIDE_NOTIFICATION:
+            return {
+                notification: null,
+            }
         default:
             return { ...state }
     }
