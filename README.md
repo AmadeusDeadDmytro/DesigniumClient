@@ -6,3 +6,6 @@ View everything on convenient charts and diagrams.
 ## Status
 Work on the project has just begun, so only authorization and registration have been done.
 
+## Contributions
+
+If the idea seemed interesting to you and you would like to participate in its development, join as an conributor
